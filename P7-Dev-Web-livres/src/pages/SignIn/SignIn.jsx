@@ -23,7 +23,7 @@ function SignIn({ setUser }) {
     try {
       setIsLoading(true);
       const response = await axios({
-        method: 'post',
+        method: 'POST',
         url: API_ROUTES.SIGN_IN,
         data: {
           email,

@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const path = require("path");
 const livresRoutes = require("./routes/livres");
 const userRoutes = require("./routes/user");
+const bodyParser = require("body-parser");
 
 mongoose.connect(
   "mongodb+srv://kenfack:Nathan19@cluster0.7fvc0ni.mongodb.net/?retryWrites=true&w=majority,",
@@ -30,8 +32,9 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
   next();
 });
-
-app.use("api/livres", livresRoutes);
+app.use(bodyParser.json());
+app.use("/api/livres", livresRoutes);
 app.use("/api/auth", userRoutes);
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 module.exports = app;
