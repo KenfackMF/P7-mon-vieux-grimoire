@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 const app = express();
 
 const bookRoutes = require("./routes/book");
@@ -24,6 +25,6 @@ mongoose
 // Utilisation des routes pour les livres et les utilisateurs
 app.use("/api/books", bookRoutes);
 app.use("/api/auth", userRoutes);
-// app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 module.exports = app;
