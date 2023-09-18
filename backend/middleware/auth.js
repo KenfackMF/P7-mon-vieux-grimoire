@@ -5,7 +5,6 @@ module.exports = (req, res, next) => {
     if (!req.headers.authorization) {
       return res.status(401).json({ error: "Authorization header missing" });
     }
-    console.log("autorisation refusée");
 
     const token = req.headers.authorization.split(" ")[1];
 
@@ -13,7 +12,6 @@ module.exports = (req, res, next) => {
     const userId = decodedToken.userId;
 
     req.userId = userId;
-
     next();
   } catch (error) {
     return res.status(401).json({ error: "Authentication failed" });

@@ -99,6 +99,7 @@ exports.getAllBooks = (req, res, next) => {
 };
 
 exports.postRating = async (req, res, next) => {
+  console.log("userId:", req.userId);
   const rateObject = {
     userId: `${req.body.userId}`,
     grade: req.body.rating,
