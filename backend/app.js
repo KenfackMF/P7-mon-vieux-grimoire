@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
+require("dotenv").config();
 
 const bookRoutes = require("./routes/book");
 const userRoutes = require("./routes/user");
@@ -18,7 +19,7 @@ app.use((req, res, next) => {
 
 // Connexion à la base de données MongoDB
 mongoose
-  .connect("mongodb+srv://kenfack:Nathan19@cluster0.7fvc0ni.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.7fvc0ni.mongodb.net/?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch((error) => console.error("Erreur de connexion à MongoDB :", error));
 
